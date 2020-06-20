@@ -7,14 +7,10 @@ export default function ShortCircuit() {
   const router = useRouter()
 
   useEffect(() => {
-    if (!window.location.search) {
-      setStatus(JSON.stringify({ error: 'No query string!' }, null, 4))
-    }
-  }, [0])
-
-  useEffect(() => {
     if (router && Object.keys(router.query).length) {
       setStatus(JSON.stringify(router.query, null, 4))
+    } else {
+      setStatus(JSON.stringify({ error: 'No query string!' }, null, 4))
     }
   }, [router])
 
